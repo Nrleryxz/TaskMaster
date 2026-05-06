@@ -13,7 +13,12 @@ function saveTasks() {
 
 function renderTasks() {
     taskList.innerHTML = '';
-    tasks.forEach((task, index) => {
+    
+    // Sort tasks: uncompleted first
+    const sortedTasks = [...tasks].sort((a, b) => a.completed - b.completed);
+    
+    sortedTasks.forEach((task) => {
+        const originalIndex = tasks.findIndex(t => t === task);
         const li = document.createElement('li');
         li.textContent = task.text;
         if (task.completed) {
@@ -21,7 +26,7 @@ function renderTasks() {
         }
 
         li.addEventListener('click', () => {
-            tasks[index].completed = !tasks[index].completed;
+            tasks[originalIndex].completed = !tasks[originalIndex].completed;
             saveTasks();
             renderTasks();
         });
@@ -31,7 +36,7 @@ function renderTasks() {
         delBtn.title = 'Görevi Sil';
         delBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            tasks.splice(index, 1);
+            tasks.splice(originalIndex, 1);
             saveTasks();
             renderTasks();
         });
