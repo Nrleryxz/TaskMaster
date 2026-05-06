@@ -1,5 +1,5 @@
 # TaskMaster - Yapılacaklar Listesi
-
+a
 TaskMaster, modern, basit ve kullanışlı bir yapılacaklar listesi uygulamasıdır.
 
 ## Özellikler
